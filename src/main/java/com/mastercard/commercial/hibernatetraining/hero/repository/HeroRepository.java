@@ -31,4 +31,29 @@ public class HeroRepository {
         return entityManager.createQuery("from Hero").getResultList();
     }
 
+    public Hero findById(Long id) {
+        return entityManager.find(Hero.class, id);
+    }
+
+    public Hero findByIdHQL(Long id) {
+        return (Hero) entityManager
+                .createQuery("from Hero where id = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+    }
+
+    public List<Hero> findByInitialName(String name) {
+        return (List<Hero>) entityManager
+                .createQuery("from Hero where fullName LIKE :name")
+                .setParameter("name", name + "%")
+                .getResultList();
+    }
+
+    public List<Hero> findHeroesByMissionName(String missionName) {
+        return (List<Hero>) entityManager
+                .createQuery("SELECT hero FROM Hero hero INNER JOIN hero.missionList mission WHERE mission.name like :name")
+                .setParameter("name", "%" + missionName + "%")
+                .getResultList();
+    }
+
 }

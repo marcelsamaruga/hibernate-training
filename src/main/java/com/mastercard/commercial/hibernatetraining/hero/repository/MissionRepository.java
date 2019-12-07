@@ -27,14 +27,5 @@ public class MissionRepository {
         return entityManager.merge(mission);
     }
 
-    public List<Mission> findAll() {
-        return entityManager
-                .createQuery("from Mission")
-                .getResultList();
-    }
-
-    public Mission findById(Long id) {
-        return entityManager.find(Mission.class, id);
-    }
 
 }

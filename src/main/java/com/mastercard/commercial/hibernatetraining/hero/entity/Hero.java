@@ -24,15 +24,15 @@ import java.util.List;
 @Table
 public class Hero extends BaseEntity {
 
+    @ManyToMany
+    @JoinTable(name = "hero_mission",
+            joinColumns = @JoinColumn(referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
+    private List<Mission> missionList;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_id")
     private Team team;
-
-    @ManyToMany
-    @JoinTable(name = "hero_mission",
-            joinColumns = @JoinColumn(name = "hero_id"),
-            inverseJoinColumns = @JoinColumn(name = "mission_id"))
-    private List<Mission> missionList;
 
     @OneToOne(mappedBy = "hero")
     private User user;

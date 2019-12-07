@@ -16,7 +16,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
-import java.util.Calendar;
+import java.util.List;
 
 @SpringBootApplication
 public class HibernateTrainingApplication  implements ApplicationRunner {
@@ -48,7 +48,7 @@ public class HibernateTrainingApplication  implements ApplicationRunner {
 		team.setName("Justice League");
 		teamRepository.merge(team);
 
-		System.out.println(team);
+		System.out.println("Team updated: " + team);
 
 		// ???? merge/persist in one method at repository layer ????
 
@@ -74,14 +74,15 @@ public class HibernateTrainingApplication  implements ApplicationRunner {
 
 		user = userRepository.persist(user);
 
-		System.out.println(user);
+		System.out.println("User to enter at the Hall of Justice: " + user);
 
 		// *** *** *** ***
 
 		// EXERCISE 3
 
 		superBoy.setTeam(team);
-		superBoy = heroRepository.merge(superBoy);
+		heroRepository.merge(superBoy);
+		System.out.println("Superboy (with team): " + superBoy);
 
 		// *** *** *** ***
 
@@ -89,27 +90,27 @@ public class HibernateTrainingApplication  implements ApplicationRunner {
 		// create new mission
 		Mission missionRescueRobin = new Mission();
 		missionRescueRobin.setName("Young Justice - Rescue Robin");
-		missionRescueRobin.setCreated(Calendar.getInstance().getTime());
+		missionRescueRobin.setCreated(DateTime.now().toDate());
 
 		missionRepository.persist(missionRescueRobin);
 
 		Mission missionDefeatBraniac = new Mission();
 		missionDefeatBraniac.setName("Young Justice - Defeat Braniac");
-		missionDefeatBraniac.setCreated(Calendar.getInstance().getTime());
+		missionDefeatBraniac.setCreated(DateTime.now().toDate());
 
 		missionRepository.persist(missionDefeatBraniac);
 
 		// associate hero with mission
 		superBoy.setMissionList(Arrays.asList(missionRescueRobin, missionDefeatBraniac));
-		missionRepository.merge(missionDefeatBraniac);
+		heroRepository.merge(superBoy);
 
-		System.out.println(superBoy);
+		System.out.println("Superboy (full profile): " + superBoy);
 
 		//
 
 		// *** *** *** ***
 
-		// EXERCISE 4
+		// EXERCISE 5
 		// cascade
 		Team martians = new Team();
 		martians.setName("Martians");
@@ -119,22 +120,49 @@ public class HibernateTrainingApplication  implements ApplicationRunner {
 		missMartian.setTeam(martians);
 
 		// neither team or hero is persisted
-		System.out.println(teamRepository.findAll());
+		System.out.println("Before persist: " + teamRepository.findAll());
 		heroRepository.persist(missMartian);
+		System.out.println("After persist: " + teamRepository.findAll());
+
+		// *** *** *** ***
+
+		// EXERCISE 5
+		// fetch type
+		// spring.jpa.show-sql=true
 		System.out.println(teamRepository.findAll());
+		// teamRepository.findAll().stream().forEach(System.out::print);
 
 
 		// *** *** *** ***
+
+		// EXERCISE 7
 		// HQL
 
-		// find all applications
-		System.out.println(heroRepository.findAll());
+		// find all heroes
+		List<Hero> heroes = heroRepository.findAll();
+		System.out.println("\nAll Heroes:\n" + heroes);
 
-		// find team by id
 
-		// find hero by name
+		// *** *** *** ***
+		// EXERCISE 8
+		// get hero ID
+		Long id = heroes.get(0).getId();
 
-		// SQL
+		// find hero by ID
+		System.out.println("Hero by Id:\n" + heroRepository.findById(id));
+		System.out.println("\n" + heroRepository.findByIdHQL(id));
+
+		// *** *** *** ***
+
+		// EXERCISE 9
+		// find hero by initial name
+		System.out.println("\nHero by Name:\n" + heroRepository.findByInitialName("M"));
+
+		// *** *** *** ***
+
+		// EXERCISE 10
+		// get the heroes of an specific mission
+		System.out.println("\nAll Heroes of a Mission:\n" + heroRepository.findHeroesByMissionName("Rescue"));
 
 
 		System.exit(0);

@@ -40,9 +40,9 @@ CREATE TABLE mission (
 
 
 
-DROP TABLE IF EXISTS intern_mission;
+DROP TABLE IF EXISTS hero_mission;
 
-CREATE TABLE intern_mission (
+CREATE TABLE hero_mission (
   hero_id INT,
   mission_id INT
 );

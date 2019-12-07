@@ -3,6 +3,7 @@ package com.mastercard.commercial.hibernatetraining.hero.entity;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
