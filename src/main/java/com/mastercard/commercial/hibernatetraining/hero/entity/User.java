@@ -21,8 +21,7 @@ import java.util.Date;
 @Table
 public class User extends BaseEntity {
 
-    @OneToOne
-    private Hero hero;
+    //private Hero hero;
 
     @Column
     private String email;

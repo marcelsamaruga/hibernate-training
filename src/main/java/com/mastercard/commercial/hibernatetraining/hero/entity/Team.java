@@ -19,8 +19,7 @@ import java.util.List;
 @Table
 public class Team extends BaseEntity {
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.EAGER)
-    private List<Hero> heroList;
+    //private List<Hero> heroList;
 
     @Column
     private String name;

@@ -19,13 +19,11 @@ public class TeamRepository {
     EntityManager entityManager;
 
     public Team persist(Team team) {
-        entityManager.persist(team);
-        return team;
+        return null;
     }
 
     public Team merge(Team team) {
-        entityManager.merge(team);
-        return team;
+        return null;
     }
 
     public List<Team> findAll() {

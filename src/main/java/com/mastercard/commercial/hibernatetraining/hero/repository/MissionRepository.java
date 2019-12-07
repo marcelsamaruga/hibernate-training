@@ -19,13 +19,17 @@ public class MissionRepository {
     private EntityManager entityManager;
 
     public Mission persist(Mission mission) {
-        entityManager.persist(mission);
-        return mission;
+        return null;
     }
 
     public Mission merge(Mission mission) {
-        return entityManager.merge(mission);
+        return null;
     }
 
+    public List<Mission> findAll() {
+        return entityManager
+                .createQuery("from Mission")
+                .getResultList();
+    }
 
 }

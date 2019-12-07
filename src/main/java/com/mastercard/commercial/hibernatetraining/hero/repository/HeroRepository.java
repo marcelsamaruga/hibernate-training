@@ -19,12 +19,11 @@ public class HeroRepository {
     EntityManager entityManager;
 
     public Hero persist(Hero hero) {
-        entityManager.persist(hero);
-        return hero;
+        return null;
     }
 
     public Hero merge(Hero hero) {
-        return entityManager.merge(hero);
+        return null;
     }
 
     public List<Hero> findAll() {
@@ -32,28 +31,19 @@ public class HeroRepository {
     }
 
     public Hero findById(Long id) {
-        return entityManager.find(Hero.class, id);
+        return null;
     }
 
     public Hero findByIdHQL(Long id) {
-        return (Hero) entityManager
-                .createQuery("from Hero where id = :id")
-                .setParameter("id", id)
-                .getSingleResult();
+        return null;
     }
 
     public List<Hero> findByInitialName(String name) {
-        return (List<Hero>) entityManager
-                .createQuery("from Hero where fullName LIKE :name")
-                .setParameter("name", name + "%")
-                .getResultList();
+        return null;
     }
 
     public List<Hero> findHeroesByMissionName(String missionName) {
-        return (List<Hero>) entityManager
-                .createQuery("SELECT hero FROM Hero hero INNER JOIN hero.missionList mission WHERE mission.name like :name")
-                .setParameter("name", "%" + missionName + "%")
-                .getResultList();
+        return null;
     }
 
 }

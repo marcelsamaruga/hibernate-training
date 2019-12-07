@@ -22,8 +22,7 @@ import java.util.List;
 @Table
 public class Mission extends BaseEntity {
 
-    @ManyToMany(mappedBy = "missionList")
-    private List<Hero> heroList;
+    //private List<Hero> heroList;
 
     @Column
     private String name;

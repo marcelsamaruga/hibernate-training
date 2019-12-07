@@ -19,19 +19,12 @@ public class UserRepository {
     private EntityManager entityManager;
 
     public User persist(User user) {
-        entityManager.persist(user);
-        return user;
+        return null;
     }
 
     public List<User> findAll() {
-        return entityManager.createQuery("from User").getResultList();
+        return null;
     }
 
-    public User findById(Long id) {
-        return (User) entityManager
-                        .createQuery("from User where hero_id = :id")
-                        .setParameter("id", id)
-                        .getSingleResult();
-    }
 
 }
