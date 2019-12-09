@@ -12,23 +12,16 @@ import java.util.Date;
 /**
  * Created by e068636 on 10/30/2019.
  */
-@Entity
-@Table
 public class User extends BaseEntity {
 
     //private Hero hero;
 
-    @Column
     private String email;
 
-    @Column
     private String password;
 
-    @Column
     private String username;
 
-    @Column
-    @Temporal(TemporalType.DATE)
     private Date renewAt;
 
     public String getEmail() {

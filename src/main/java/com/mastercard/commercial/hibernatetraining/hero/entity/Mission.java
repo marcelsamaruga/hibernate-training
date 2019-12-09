@@ -13,17 +13,12 @@ import java.util.List;
 /**
  * Created by e068636 on 10/29/2019.
  */
-@Entity
-@Table
 public class Mission extends BaseEntity {
 
     //private List<Hero> heroList;
 
-    @Column
     private String name;
 
-    @Column
-    @Temporal(TemporalType.DATE)
     private Date created;
 
     public String getName() {

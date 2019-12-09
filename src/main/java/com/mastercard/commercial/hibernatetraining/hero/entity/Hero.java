@@ -16,8 +16,6 @@ import java.util.List;
 /**
  * Created by e068636 on 10/29/2019.
  */
-@Entity
-@Table
 public class Hero extends BaseEntity {
 
     //private Team team;
@@ -26,7 +24,6 @@ public class Hero extends BaseEntity {
 
     //private User user;
 
-    @Column(name = "full_name")
     private String fullName;
 
     public String getFullName() {

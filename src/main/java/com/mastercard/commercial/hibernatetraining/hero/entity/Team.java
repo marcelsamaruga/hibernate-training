@@ -10,12 +10,9 @@ import java.util.List;
 /**
  * Created by e068636 on 10/29/2019.
  */
-@Entity
-@Table
 public class Team extends BaseEntity {
 
     //private List<Hero> heroList;
 
-    @Column
     private String name;
 }

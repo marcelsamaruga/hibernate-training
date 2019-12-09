@@ -9,11 +9,8 @@ import java.io.Serializable;
 /**
  * Created by e068636 on 11/4/2019.
  */
-@MappedSuperclass
 public class BaseEntity implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
     public Long getId() {
